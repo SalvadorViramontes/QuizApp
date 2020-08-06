@@ -28,16 +28,20 @@ export const QuestionModule: Module<QuestionState, RootState> = {
         pollQuestions: function(store){
             let myUrl: string = store.state.questionUrl;
             const userOptions: UserOptions = store.getters['OptionsModule/getSelectedOptions'];
+
+            const selectedCategory: string = (userOptions.category !== null) ? String(userOptions.category) : '';
+
             myUrl += '?amount=' + userOptions.number;
-            myUrl += '&category=' + userOptions.category;
-            myUrl += '&difficulty=' + userOptions.difficulty;
-            myUrl += '&type=' + userOptions.difficulty;
+            myUrl += '&category=' + selectedCategory;
+            myUrl += '&difficulty=' + (userOptions.difficulty ?? '');
+            myUrl += '&type=' + (userOptions.type ?? '');
+
             fetch(myUrl, {
                 method: 'get'
             }).then((response => {
                 return response.json();
             })).then((jsonData => {
-                store.commit('getQuestions', jsonData.results);
+                store.commit('setQuestions', jsonData.results);
             }))
         }
     }

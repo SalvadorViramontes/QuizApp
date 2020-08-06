@@ -40,6 +40,7 @@ export const OptionsModule: Module<OptionState, RootState> = {
             { text: 'Cartoons & Animations', value: 32, icon: 'far fa-grin-tongue' }
         ],
         difficulties:[
+			{ text: 'Any Difficulty', value: null, icon: 'fas fa-thermometer-empty' },
             { text: 'Easy', value: 'easy', icon: 'fas fa-thermometer-quarter' },
             { text: 'Medium', value: 'medium', icon: 'fas fa-thermometer-half' },
             { text: 'Hard', value: 'hard', icon: 'fas fa-thermometer-three-quarters' }

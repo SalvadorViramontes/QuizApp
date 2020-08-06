@@ -2,7 +2,7 @@ import { NullableString, NullableNumber } from '../types';
 
 export interface UserOptions{
     number: NullableNumber;
-    category: NullableString;
+    category: NullableNumber;
     difficulty: NullableString;
     type: NullableString;
 }

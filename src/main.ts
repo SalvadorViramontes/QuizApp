@@ -5,6 +5,7 @@ import store from './store'
 
 import { BootstrapVue } from 'bootstrap-vue'
 import './custom.scss'
+import "@fortawesome/fontawesome-free/css/all.css";
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import Options from '../views/Options.vue'
+import Quiz from '../views/Quiz.vue'
 
 Vue.use(VueRouter)
 
@@ -17,12 +18,9 @@ Vue.use(VueRouter)
     component: Options,
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue'),
-    meta: {
-      title: 'About',
-    }
+    path: '/quiz',
+    name: 'Quiz',
+    component: Quiz,
   }
 ]
 

@@ -34,7 +34,7 @@
   // }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .jumbotron{
         margin-bottom: 0;
         height: 75vh;

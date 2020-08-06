@@ -1,5 +1,5 @@
 export type NullableNumber = number | null;
-export type NullableString = number | null;
+export type NullableString = string | null;
 export type NullableQuestion = Question | null;
 
 export interface RootState{

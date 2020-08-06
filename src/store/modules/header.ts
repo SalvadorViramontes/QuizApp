@@ -7,7 +7,8 @@ export const HeaderModule: Module<HeaderState, RootState> = {
     namespaced: true as boolean,
     state: {
         correctAnswers: 0,
-        answeredQuestions: 0
+        answeredQuestions: 0,
+        index: 0,
     } as HeaderState,
     getters: {
         getCorrectAnswers: function(state: HeaderState){
@@ -15,6 +16,9 @@ export const HeaderModule: Module<HeaderState, RootState> = {
         },
         getAnsweredQuestions: function(state: HeaderState){
             return state.answeredQuestions;
+        },
+        getCurrentIndex: function(state: HeaderState){
+            return state.index;
         }
     } as GetterTree<HeaderState, RootState>,
     mutations: {
@@ -23,6 +27,9 @@ export const HeaderModule: Module<HeaderState, RootState> = {
         },
         addTotalAnswer: function(state: HeaderState){
             state.answeredQuestions++;
+        },
+        addCurrentIndex: function(state: HeaderState){
+            state.index++;
         }
     } as MutationTree<HeaderState>,
     actions: {
@@ -30,6 +37,12 @@ export const HeaderModule: Module<HeaderState, RootState> = {
             if(isCorrect)
                 store.commit('addCorrectAnswer');
             store.commit('addTotalAnswer');
+        },
+        nextQuestion: function(store){
+            const maxQuestions = store.rootGetters['OptionsModule/getTotalQuestions'];
+            if(store.state.index + 1 < maxQuestions){
+                store.commit('addCurrentIndex');
+            }
         }
     } as ActionTree<HeaderState, RootState>
 };

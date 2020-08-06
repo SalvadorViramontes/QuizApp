@@ -1,32 +1,32 @@
 import { Module, GetterTree, MutationTree, ActionTree } from "vuex";
 
 import { RootState, Question } from "../types";
-import { QuestionState } from './questionTypes';
+import { QuizState } from './quizTypes';
 import { UserOptions } from './optionTypes';
 
-export const QuestionModule: Module<QuestionState, RootState> = {
+export const QuizModule: Module<QuizState, RootState> = {
     namespaced: true as boolean,
     state: {
         questionUrl: 'https://opentdb.com/api.php',
         questions: []
-    } as QuestionState,
+    } as QuizState,
     getters: {
-        getQuestions: function(state: QuestionState){
+        getQuestions: function(state: QuizState){
             return state.questions;
         },
-        getCurrentQuestion: function(state: QuestionState, _getters, _rootState: RootState, rootGetters){
-            const currentIndex = rootGetters['HeaderModule/getCurrentIndex'];
-            return state.questions[currentIndex];
-        },
-        ready: function(state: QuestionState){
-            return state.questions.length > 0;
+        getCurrentQuestion: function(state: QuizState, getters, rootState, rootGetters){
+            console.log(state);
+            console.log(getters);
+            console.log(rootState);
+            console.log(rootGetters);
+            return state.questions[0];
         }
-    } as GetterTree<QuestionState, RootState>,
+    } as GetterTree<QuizState, RootState>,
     mutations: {
-        setQuestions: function(state: QuestionState, receivedQuestions: Question[]) {
+        setQuestions: function(state: QuizState, receivedQuestions: Question[]) {
             state.questions = receivedQuestions;
         }
-    } as MutationTree<QuestionState>,
+    } as MutationTree<QuizState>,
     actions: {
         pollQuestions: function(store){
             let myUrl: string = store.state.questionUrl;
@@ -47,5 +47,5 @@ export const QuestionModule: Module<QuestionState, RootState> = {
                 store.commit('setQuestions', jsonData.results);
             }))
         }
-    } as ActionTree<QuestionState, RootState>
+    } as ActionTree<QuizState, RootState>
 };

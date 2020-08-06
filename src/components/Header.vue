@@ -7,7 +7,8 @@
                 <b-nav-text> <b>QuizApp</b> </b-nav-text>
                 <b-nav-text> <b>Total: {{ numCorrect }}/{{ numTotal }}</b> </b-nav-text>
                 <router-link to="/">Home</router-link> |
-                <router-link to="/about">About</router-link>
+                <router-link to="/about">About</router-link> | 
+                <router-link to="/options">Options</router-link>
             </b-navbar-nav>
         </b-navbar>
     </div>

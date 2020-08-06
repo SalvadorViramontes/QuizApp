@@ -11,7 +11,7 @@
                 <li class="navbar-text">
                     <b>QuizApp</b>
                 </li>
-                <li class="navbar-text">
+                <li class="navbar-text" v-if="route==='Quiz'">
                     <b>Total: {{ numCorrect }}/{{ numTotal }}</b>
                 </li>
             </ul>
@@ -53,6 +53,10 @@
     //import Component from 'vue-class-component'
 
     export default class Header extends Vue {
+
+        get route(){
+            return this.$route.name;
+        }
 
         get numCorrect(){
             return this.$store.getters['HeaderModule/getCorrectAnswers'];

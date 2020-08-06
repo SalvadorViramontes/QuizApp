@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Options from '../views/Options.vue'
 import Quiz from '../views/Quiz.vue'
 import Results from '../views/Results.vue'
+import Scores from '../views/Scores.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ Vue.use(VueRouter)
     path: '/results',
     name: 'Results',
     component: Results
+  },
+  { 
+    path: '/scores',
+    name: 'Scores',
+    component: Scores
   }
 ]
 

@@ -3,7 +3,7 @@ export type NullableString = string | null;
 export type NullableQuestion = Question | null;
 
 export interface RootState{
-    myState: NullableString
+    currentRoute: NullableString
 }
 export interface Question{
     category: string;

@@ -4,6 +4,7 @@ import { RootState } from './types'
 import { HeaderModule } from './modules/header'
 import { QuestionModule } from './modules/questions'
 import { OptionsModule } from './modules/options'
+import { QuizModule } from './modules/quiz'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ const storeOption: StoreOptions<RootState> = {
   modules: {
     HeaderModule,
     QuestionModule,
-    OptionsModule
+    OptionsModule,
+    QuizModule
   }
 }
 

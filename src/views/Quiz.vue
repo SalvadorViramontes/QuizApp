@@ -13,8 +13,8 @@
                 v-bind:key="index"
                 @click.prevent="selectAnswer(index)"
                 v-bind:class="answerClass(index)"
+                v-html="answer"
               >
-                {{ answer }}
               </li>
             </ul>
           </div>
@@ -32,7 +32,7 @@
           v-on:click.prevent="next"
           v-show="answered"
         >
-          Next Question 
+          {{ quizStatus ? "Next Question" : "Get Results" }} 
         </button>
       </div>
     </div>
@@ -63,6 +63,10 @@
       return this.$store.getters['QuestionModule/ready'];
     }
 
+    get quizStatus(): boolean{
+      return this.$store.getters['QuizModule/getQuizStatus'];
+    }
+
     @Watch('currentQuestion', { immediate: false })
     function(){
       this.selectedIndex = null;
@@ -75,7 +79,10 @@
     }
 
     public next(): void{
-      this.$store.dispatch('HeaderModule/nextQuestion');
+      if(this.quizStatus)
+        this.$store.dispatch('HeaderModule/nextQuestion');
+      else
+        this.$router.push({name:'Results'});
     }
 
     public selectAnswer(index: number): void{
@@ -119,28 +126,44 @@
 </script>
 
 <style scoped>
-    .list-group{
-        margin-bottom: 15px;
-    }
+  .jumbotron{
+    margin-bottom: 0;
+    height: 75vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
 
-    .list-group-item:hover:not(.selected):not(.correct):not(.incorrect){
-        background-color: #EEE;
-        cursor: pointer;
+  @media (max-width: 576px) {
+    .jumbotron{
+      width: 75vw;
     }
+  }
 
-    .btn{
-        margin: 0 5px;
-    }
+  .list-group{
+    margin-bottom: 15px;
+  }
 
-    .selected{
-        background-color: lightblue;
-    }
+  .list-group-item:hover:not(.selected):not(.correct):not(.incorrect){
+    background-color: #EEE;
+    cursor: pointer;
+  }
 
-    .correct{
-        background-color: lightgreen;
-    }
+  .btn{
+    margin: 0 5px;
+  }
 
-    .incorrect{
-        background-color: indianred;
-    } 
+  .selected{
+    background-color: lightblue;
+  }
+
+  .correct{
+    background-color: lightgreen;
+  }
+
+  .incorrect{
+    background-color: indianred;
+  } 
 </style>

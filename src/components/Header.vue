@@ -1,16 +1,21 @@
 <template>
     <div>
-        <b-navbar variant="dark">
-            <b-navbar-brand> <img src="../assets/logo.png"> </b-navbar-brand>
-
-            <b-navbar-nav>
-                <b-nav-text> <b>QuizApp</b> </b-nav-text>
-                <b-nav-text> <b>Total: {{ numCorrect }}/{{ numTotal }}</b> </b-nav-text>
-                <router-link to="/">Home</router-link> |
-                <router-link to="/quiz">Quiz</router-link> | 
-                <router-link to="/options">Options</router-link>
-            </b-navbar-nav>
-        </b-navbar>
+        <nav class="navbar navbar-light bg-dark navbar-expand">
+            <div class="navbar-brand">
+                <a @click.prevent="goHome()" href="/">
+                    <img src="../assets/logo.png">
+                </a>
+            </div>
+            
+            <ul class="navbar-nav">
+                <li class="navbar-text">
+                    <b>QuizApp</b>
+                </li>
+                <li class="navbar-text">
+                    <b>Total: {{ numCorrect }}/{{ numTotal }}</b>
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -22,10 +27,14 @@
             height: 99%;
             padding: 0;
 
-            img{
+            a{
                 height: inherit;
-                width: auto;
-                vertical-align: center;
+
+                img{
+                    height: inherit;
+                    width: auto;
+                    vertical-align: center;
+                }
             }
         }
     }
@@ -40,7 +49,7 @@
 </style>
 
 <script lang="ts">
-    import Vue from 'vue'
+    import { Vue } from "vue-property-decorator";
     //import Component from 'vue-class-component'
 
     export default class Header extends Vue {
@@ -51,6 +60,10 @@
 
         get numTotal(){
             return this.$store.getters['HeaderModule/getAnsweredQuestions'];
+        }
+
+        public goHome(): void{
+            this.$router.push({name:'Home'});
         }
     }
 </script>

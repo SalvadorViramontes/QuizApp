@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <Header />
-    <router-view/>
+    <Header></Header>
+    <b-container>
+      <router-view/>
+    </b-container>
   </div>
 </template>
 
@@ -33,16 +31,16 @@
 </style>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
-import Header from './components/Header.vue'
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
+  import Header from './components/Header.vue'
 
-@Component({
-  components: {
-    Header
+  @Component({
+    components: {
+      Header
+    }
+  })
+  export default class App extends Vue{
+
   }
-})
-export default class App extends Vue{
-
-}
 </script>

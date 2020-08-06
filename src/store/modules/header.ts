@@ -37,6 +37,9 @@ export const HeaderModule: Module<HeaderState, RootState> = {
             if(isCorrect)
                 store.commit('addCorrectAnswer');
             store.commit('addTotalAnswer');
+            const maxQuestions = store.rootGetters['OptionsModule/getTotalQuestions'];
+            if(store.state.answeredQuestions == maxQuestions)
+                store.commit('QuizModule/endQuiz', null, { root: true });
         },
         nextQuestion: function(store){
             const maxQuestions = store.rootGetters['OptionsModule/getTotalQuestions'];

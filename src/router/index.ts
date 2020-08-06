@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import Options from '../views/Options.vue'
 import Quiz from '../views/Quiz.vue'
+import Results from '../views/Results.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path: '/quiz',
     name: 'Quiz',
     component: Quiz,
+  },
+  { 
+    path: '/results',
+    name: 'Results',
+    component: Results
   }
 ]
 

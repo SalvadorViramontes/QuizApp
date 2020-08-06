@@ -8,23 +8,26 @@ export const QuizModule: Module<QuizState, RootState> = {
     namespaced: true as boolean,
     state: {
         questionUrl: 'https://opentdb.com/api.php',
-        questions: []
+        questions: [],
+        finished: false
     } as QuizState,
     getters: {
         getQuestions: function(state: QuizState){
             return state.questions;
         },
-        getCurrentQuestion: function(state: QuizState, getters, rootState, rootGetters){
-            console.log(state);
-            console.log(getters);
-            console.log(rootState);
-            console.log(rootGetters);
-            return state.questions[0];
+        getQuizStatus: function(state){
+            return !state.finished;
         }
     } as GetterTree<QuizState, RootState>,
     mutations: {
         setQuestions: function(state: QuizState, receivedQuestions: Question[]) {
             state.questions = receivedQuestions;
+        },
+        endQuiz: function(state: QuizState){
+            state.finished = true;
+        },
+        restartQuiz: function(state: QuizState){
+            state.finished = false;
         }
     } as MutationTree<QuizState>,
     actions: {

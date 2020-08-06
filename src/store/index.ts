@@ -1,15 +1,21 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { StoreOptions } from 'vuex'
+import { RootState } from './types'
+import { HeaderModule } from './modules/header'
+import { QuestionModule } from './modules/questions'
+import { OptionsModule } from './modules/options'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const storeOption: StoreOptions<RootState> = {
   state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+    myState: null
+  } as RootState,
   modules: {
+    HeaderModule,
+    QuestionModule,
+    OptionsModule
   }
-})
+}
+
+export default new Vuex.Store (storeOption)
